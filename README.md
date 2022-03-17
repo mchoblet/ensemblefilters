@@ -48,8 +48,7 @@ As I work on paleoclimate DA project the test-data is from a past-millenium clim
 * Xf Forecast from model (55296 * 100) (The number of rows is given by the number of gridpoints of the climate model. Prior contains temperature values (K))
 * HXf; Observations from model (293 * 100)
 
-### Speed:
-For this type of tes data, the speed is dominated by the last operation (multiplication of perturbation matrix with weight matrix).
+For this type of test data, the speed is dominated by the last operation (multiplication of perturbation matrix with weight matrix).
 
 # Contact
 If you find errors,ways to optimize the code etc.  feel free to open an issue or contact me via mchoblet -AT- iup.uni-heidelberg.de

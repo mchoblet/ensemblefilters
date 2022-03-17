@@ -5,9 +5,9 @@ This repository offers Python code for a variety of Ensemble Kalman Filters as p
 For the implemntation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors or lack of clarity.
 
 ## Content of repository:
-* Separate file for each Kalman Filter
-* Folder "testdata" containg data from a general circulation model which can be assimilated with the functions.
-* test_notebook which checks that the output of the different functions is equal (posterior mean and covariance matrix)
+* Folder "kalmanfilters": Separate file for each Kalman Filter
+* Folder "testdata": data from a general circulation model which can be assimilated with the functions
+* kalman_filters_tests-notebook: Simple scripts to check that the output of the different functions is equal (posterior mean and covariance matrix)
 
 ## Dependencies
 * numpy as np

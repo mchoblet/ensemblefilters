@@ -5,28 +5,28 @@ This repository offers Python code for a variety of Ensemble Kalman Filters as p
 For the implemntation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors or lack of clarity.
 
 ## Content of repository:
-* Folder "kalmanfilters": Separate file for each Kalman Filter
-* Folder "testdata": data from a general circulation model which can be assimilated with the functions
-* kalman_filters_tests-notebook: Simple scripts to check that the output of the different functions is equal (posterior mean and covariance matrix)
+* Folder kalmanfilters: Separate file for each Kalman Filter
+* Folder testdata: data from a general circulation model which can be assimilated with the functions
+* kalman_filters_tests-notebook: Simple script to check that the output of the different functions is equal (posterior mean and covariance matrix)
 
 ## Dependencies
 * numpy as np
-* scipy (only the direct EnSRF method, which I do not recommend to use, needs it for matrix square root calculation)
+* scipy (only the EnSRF_direct function needs it for matrix square root calculation)
 * time for speed calculation
 
 ## Input variables and dimension conventions
 * Note that the observation operator  H  is only implemented implicitely in these functions, the observations from the model  Hx  need to be precalculated. The observation uncertainties are assumed to be uncorrelated, hence the matrix R is diagonal (algorithms are written for diagonal R).
 
 **Variables**
-* Xf: Prior ensemble ( N_x  *  N_e )
-* HX: Observations from model ( N_y  *  N_e )
+* Xf: Prior ensemble ( Nx  *  N_e )
+* HX: Observations from model ( Ny  *  Ne )
 * Y: Observations ( N_y  * 1) 
-* R: Observation error (uncorrelated, R is assumed diagonal) ( N_y  * 1)
+* R: Observation error (uncorrelated, R is assumed diagonal) ( Ny  * 1)
 
 **Dimensions**
-*  N_e  Ensemble Size 
-*  N_x  State Vector length
-*  N_y  Number of measurements
+*  Ne:  Ensemble Size 
+*  Nx:  State Vector length
+*  Ny:  Number of measurements
 
 ## Ensemble Kalman Filters implemented so far
 
@@ -45,8 +45,8 @@ As I work on paleoclimate DA project the test-data is from a past-millenium clim
 
 * Y: Measurements (293 * 1) (Actualized synthesized observations generated with additional noise from the prior)
 * R: Measurement errors (293 * 1)
-* Xf Forecast from model (55296 * 100) (The number of rows is given by the number of gridpoints of the climate model. Prior contains temperature values (K))
-* HXf; Observations from model (293 * 100)
+* Xf: Forecast from model (55296 * 100) (The number of rows is given by the number of gridpoints of the climate model. Prior contains temperature values (K))
+* HXf: Observations from model (293 * 100)
 
 For this type of test data, the speed is dominated by the last operation (multiplication of perturbation matrix with weight matrix).
 

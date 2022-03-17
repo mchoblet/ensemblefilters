@@ -7,29 +7,30 @@ For the implemntation I followed the Fortran-like pseudocode given by authors in
 ## Content of repository:
 * Separate file for each Kalman Filter
 * Folder "testdata" containg data from a general circulation model which can be assimilated with the functions.
-* test_notebook which checks that the output of the different functions is equal
+* test_notebook which checks that the output of the different functions is equal and including
 
 ## Dependencies
 * numpy as np
 * scipy (only the direct EnSRF method, which I do not recommend to use, needs it for matrix square root calculation)
+* timeit (for speed comparison)
 
 ## Input variables and dimension conventions
-* Note that the observation operator $`H`$ is only implemented implicitely in these functions, the observations from the model $`Hx`$ need to be precalculated.
+* Note that the observation operator  H  is only implemented implicitely in these functions, the observations from the model  Hx  need to be precalculated.
 
 **Variables**
-* Xf: Prior ensemble ($`N_x`$ * $`N_e`$)
-* HX: Observations from model ($`N_y`$ * $`N_e`$)
-* Y: Observations ($`N_y`$ * 1) 
-* R: Observation error (uncorrelated, R is assumed diagonal) ($`N_y`$ * 1)
+* Xf: Prior ensemble ( N_x  *  N_e )
+* HX: Observations from model ( N_y  *  N_e )
+* Y: Observations ( N_y  * 1) 
+* R: Observation error (uncorrelated, R is assumed diagonal) ( N_y  * 1)
 
 **Dimensions**
-* $`N_e`$ Ensemble Size (e.g. 100)
-* $`N_x`$ State Vector length (e.g. number of gridboxes if one variable assimilated, 55000)
-* $`N_y`$ Number of measurements
+*  N_e  Ensemble Size 
+*  N_x  State Vector length
+*  N_y  Number of measurements
 
 ## Ensemble Kalman Filters implemented so far
 
-* EnSRF: Ensemble Square Root Filter  (Whitaker and Hamill 2002)
+* EnSRF: Ensemble Square Root Filter
     * simultaneous solver
     * serialized solver
     * direct solving of K and K-tilde (numerical errors can be significant)
@@ -44,7 +45,7 @@ As I work on paleoclimate DA project the test-data is from a past-millenium clim
 
 * Y: Measurements (293 * 1) (Actualized synthesized observations generated with additional noise from the prior)
 * R: Measurement errors (293 * 1)
-* Xf Forecast from model (55496 * 100)
+* Xf Forecast from model (55496 * 100) (The number of rows is given by the number of gridpoints of the climate model. Prior contains temperature values (K))
 * HXf; Observations from model (293 * 100)
 
 # Contact

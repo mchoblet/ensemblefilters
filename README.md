@@ -7,12 +7,12 @@ For the implemntation I followed the Fortran-like pseudocode given by authors in
 ## Content of repository:
 * Separate file for each Kalman Filter
 * Folder "testdata" containg data from a general circulation model which can be assimilated with the functions.
-* test_notebook which checks that the output of the different functions is equal and including
+* test_notebook which checks that the output of the different functions is equal (posterior mean and covariance matrix)
 
 ## Dependencies
 * numpy as np
 * scipy (only the direct EnSRF method, which I do not recommend to use, needs it for matrix square root calculation)
-* timeit (for speed comparison)
+* time for speed calculation
 
 ## Input variables and dimension conventions
 * Note that the observation operator  H  is only implemented implicitely in these functions, the observations from the model  Hx  need to be precalculated. The observation uncertainties are assumed to be uncorrelated, hence the matrix R is diagonal (algorithms are written for diagonal R).
@@ -41,7 +41,7 @@ For the implemntation I followed the Fortran-like pseudocode given by authors in
 
 
 ## Test Data
-As I work on paleoclimate DA project the test-data is from a past-millenium climate simulation [4]
+As I work on paleoclimate DA project the test-data is from a past-millenium climate simulation. Of course you can also easily generate some random test data.
 
 * Y: Measurements (293 * 1) (Actualized synthesized observations generated with additional noise from the prior)
 * R: Measurement errors (293 * 1)

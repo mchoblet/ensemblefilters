@@ -56,7 +56,9 @@ If you find errors,ways to optimize the code etc.  feel free to open an issue or
 
 # Literature
 [1] Sanita Vetra-Carvalho et al. State-of-the-art stochastic data assimilation methods for high-dimensional non-Gaussian problems. Tellus A: Dynamic Meteorology and Oceanography, 70(1):1445364, 2018. https://doi.org/10.1080/16000870.2018.1445364
-The original authors have implemented some of the functions for the sangema project in Fortran and in julia language. I have not checked this code in detail.
+The authors have implemented some of the functions for the sangema project in Fortran and in julia language. I have not checked this code in detail.
+
 https://sourceforge.net/projects/sangoma/
+
 https://github.com/Alexander-Barth/DataAssim.jlts
 

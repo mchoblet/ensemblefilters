@@ -15,7 +15,7 @@ For the implemntation I followed the Fortran-like pseudocode given by authors in
 * timeit (for speed comparison)
 
 ## Input variables and dimension conventions
-* Note that the observation operator  H  is only implemented implicitely in these functions, the observations from the model  Hx  need to be precalculated.
+* Note that the observation operator  H  is only implemented implicitely in these functions, the observations from the model  Hx  need to be precalculated. The observation uncertainties are assumed to be uncorrelated, hence the matrix R is diagonal (algorithms are written for diagonal R).
 
 **Variables**
 * Xf: Prior ensemble ( N_x  *  N_e )
@@ -47,6 +47,9 @@ As I work on paleoclimate DA project the test-data is from a past-millenium clim
 * R: Measurement errors (293 * 1)
 * Xf Forecast from model (55496 * 100) (The number of rows is given by the number of gridpoints of the climate model. Prior contains temperature values (K))
 * HXf; Observations from model (293 * 100)
+
+### Speed:
+For this type of tes data, the speed is dominated by the last operation (multiplication of perturbation matrix with weight matrix).
 
 # Contact
 If you find errors,ways to optimize the code etc.  feel free to open an issue or contact me via mchoblet -AT- iup.uni-heidelberg.de

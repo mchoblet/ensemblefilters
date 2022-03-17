@@ -1,5 +1,5 @@
 import numpy as np
-import scipy
+import scipy.linalg
 
 def ENSRF_direct(Xf, HXf, Y, R):
     """

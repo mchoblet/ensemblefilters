@@ -33,7 +33,7 @@ For the implemntation I followed the Fortran-like pseudocode given by authors in
 * EnSRF: Ensemble Square Root Filter
     * simultaneous solver
     * serialized solver
-    * direct solving of K and K-tilde (numerical errors can be significant)
+    * direct solving of K and K-tilde (numerical errors possible?)
 * ETKF: Ensemble Transform Kalman Filter:
     * Square Root Formulation by Hunt
     * Adaptation by Livings 

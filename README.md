@@ -2,7 +2,7 @@
 
 This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1]. I highly appreciate the authors effort to present a variety of data-assimilation methods using a unified mathematical notation and recommend reading the paper if you want to understand what it is all about.
 
-For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity.
+For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity. If you want to be 100% sure the functions are doing the right thing revise the math and the code by yourself. The jupyter notebook shows that the output from all functions is equal for my test data, but of course strictly speaking this is not a proof.
 
 Hopefully I will have time to implement other methods mentioned in the paper one day, it's fun! Feel free to add your contributions if you like.
 
@@ -61,5 +61,5 @@ If you find errors, ways to optimize the code etc.  feel free to open an issue o
 
 # Literature
 [1] Sanita Vetra-Carvalho et al. State-of-the-art stochastic data assimilation methods for high-dimensional non-Gaussian problems. Tellus A: Dynamic Meteorology and Oceanography, 70(1):1445364, 2018. https://doi.org/10.1080/16000870.2018.1445364
-The authors have implemented most of the functions for the sangema project in Fortran and in julia language. I have not checked this code in detail: https://sourceforge.net/projects/sangoma/, https://github.com/Alexander-Barth/DataAssim.jlts
+The authors have implemented most of the functions for the sangema project in Fortran and in julia language. I have not checked their code in detail: https://sourceforge.net/projects/sangoma/, https://github.com/Alexander-Barth/DataAssim.jlts
 

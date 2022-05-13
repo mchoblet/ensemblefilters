@@ -2,7 +2,7 @@
 
 This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1]. I highly appreciate the authors effort to present a variety of data-assimilation methods using a unified mathematical notation and recommend reading the paper if you want to understand what it is all about.
 
-For the implemntation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors or lack of clarity.
+For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity.
 
 Hopefully I will have time to implement other methods mentioned in the paper one day, it's fun! Feel free to add your contributions if you like.
 

@@ -1,10 +1,10 @@
-# Collection of ensemble square root kalman filters implemented in Python
+# A collection of ensemble square root kalman filters implemented in Python
 
 This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1].The authors present a variety of data-assimilation methods using a unified mathematical notation. I really recommend reading the paper if you want to understand what it is all about.
 
 For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity. If you want to be 100% sure the functions are doing the right thing revise the math and the code by yourself. The jupyter notebook shows that the output (posterior mean + covariancE) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
 
-Hopefully I will have time to implement other methods mentioned in the paper one day, it's fun! Feel free to add your contributions if you like.
+I hope to have time to implement other methods mentioned in the paper one day, it's fun! Feel free to add your contributions if you like.
 
 ## Content of repository:
 * Folder kalmanfilters: Separate file for each Kalman Filter

@@ -1,8 +1,8 @@
 # Collection of ensemble square root kalman filters implemented in Python
 
-This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1]. I highly appreciate the authors effort to present a variety of data-assimilation methods using a unified mathematical notation and recommend reading the paper if you want to understand what it is all about.
+This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1].The authors present a variety of data-assimilation methods using a unified mathematical notation. I really recommend reading the paper if you want to understand what it is all about.
 
-For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity. If you want to be 100% sure the functions are doing the right thing revise the math and the code by yourself. The jupyter notebook shows that the output from all functions is equal for my test data, but of course strictly speaking this is not a proof.
+For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity. If you want to be 100% sure the functions are doing the right thing revise the math and the code by yourself. The jupyter notebook shows that the output (posterior mean + covariancE) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
 
 Hopefully I will have time to implement other methods mentioned in the paper one day, it's fun! Feel free to add your contributions if you like.
 
@@ -54,7 +54,7 @@ As I work on a paleoclimate Data Assimilation project the test-data is from a pa
 * Xf: Forecast from model (55296 * 100) (The number of rows is given by the number of gridpoints of the climate model. Prior contains temperature values (K))
 * HXf: Observations from model (293 * 100)
 
-For this type of test data, the speed is dominated by the last operation (multiplication of perturbation matrix with weight matrix). You will see how much faster an optimized variant like the ETKF or ESTKF is in comparison to the serialized EnSRF. In my discipline people have also simply used the direct solving for K and K-tilde, which doesn't require much fancy mathematics, but is an order of magnitude faster than optimized implementations as you can find on this repo.
+For this type of test data, the speed is dominated by the last operation (multiplication of perturbation matrix with weight matrix). You will see how much faster an optimized variant like the ETKF or ESTKF is in comparison to the serialized EnSRF. In my discipline people have also simply used the direct solving for K and K-tilde, which doesn't require much fancy mathematics, but is an order of magnitude slower than optimized implementations as you can find on this repo.
 
 # Contact
 If you find errors, ways to optimize the code etc.  feel free to open an issue or contact me via mchoblet -AT- iup.uni-heidelberg.de

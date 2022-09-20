@@ -1,14 +1,29 @@
 import numpy as np
-import scipy.linalg
+import scipy
 
 def ENSRF_direct(Xf, HXf, Y, R):
     """
     direct calculation of Ensemble Square Root Filter from Whitaker and Hamill
-    as for instance done in Steiger 2018: "A reconstruction
-    of global hydroclimate and dynamical variables over the Common Era".
+    As for instance done in Steiger 2018: "A reconstruction of global hydroclimate and dynamical variables over the Common Era".
     
-    Issue: Matrix square roots/inverse give imaginary parts (small for my test data)
-
+    In comparison to the code for that paper [1], the matrix multiplications are performed  consequently from left to right and 
+    the kalman gain is not explicitely computed, because this would be inefficient when we are just interested in the posterior ensemble.
+    One could also avoid computing the matrix inverses and solve linear systems instead (one could even use Cholesky decomposition
+    because the covariance matrices are positive definite), but as the number of observations is small the speed up is insignificant.
+    When using many observations (>1000) one should consider doing it. Here, the main computation effort comes from the matrix square root
+    (potentially numerically unstable) and unavoidable matrix - matrix multiplications.
+    
+    Dimensions: N_e: ensemble size, N_y: Number of observations: N_x: State vector size (Gridboxes x assimilated variables)
+    
+    Input:
+    - Xf:  the prior ensemble (N_x x N_e) 
+    - R: Measurement Error (Variance of pseudoproxy timerseries) ($N_y$ x 1$) -> converted to Ny x Ny matrix
+    - HX^f: Model value projected into observation space/at proxy locations ($N_y$ x $N_e$)
+    - Y: Observation vector ($N_y$ x 1)
+    Output:
+    - Analysis ensemble (N_x, N_e)
+    
+    [1] https://github.com/njsteiger/PHYDA-v1/blob/master/M_update.m
     """
     Ne=np.shape(Xf)[1]
 
@@ -26,28 +41,28 @@ def ENSRF_direct(Xf, HXf, Y, R):
     #innovation
     d=Y-mY
 
-    #compute matrix products directly, do not calculate B separately (huge!)
-    BHT=(Xfp @ HXp.T)/(Ne-1)
-    HBHT=(HXp @ HXp.T)/(Ne-1)
+    #compute matrix products directly
+    #BHT=(Xfp @ HXp.T)/(Ne-1) #avoid this, it's inefficient to compute it here
+    HPHT=(HXp @ HXp.T)/(Ne-1)
 
     #second Kalman gain factor
-    HBHTR=HBHT+Rmat
-    #inverse of factor
-    HBHTR_inv=np.linalg.inv(HBHTR)
+    HPHTR=HPHT+Rmat
+    #inverse of term
+    HPHTR_inv=np.linalg.inv(HPHTR)
     #matrix square root of denominator
-    HBHTR_sqr=scipy.linalg.sqrtm(HBHTR)
+    HPHTR_sqr=scipy.linalg.sqrtm(HPHTR)
 
     #Kalman gain for mean
-    xa_m=mX + BHT @ (HBHTR_inv @ d)
+    xa_m=mX + (Xfp @ (HXp.T /(Ne-1) @ (HPHTR_inv @ d)))
 
     #Perturbation Kalman gain
     #inverse of square root calculated via previous inverse: sqrt(A)^(-1)=sqrt(A) @ A^(-1)
-    HBHTR_sqr_inv=HBHTR_sqr @ HBHTR_inv
-    fac2=HBHTR_sqr + Rsqr
+    HPHTR_sqr_inv=HPHTR_sqr @ HPHTR_inv
+    fac2=HPHTR_sqr + Rsqr
     factor=np.linalg.inv(fac2)
 
-    # use brackets for right to left matrix multiplication
-    pert = BHT @ (HBHTR_sqr_inv.T @ (factor @ HXp))
+    #right to left multiplication!
+    pert = (Xfp @ (HXp.T/(Ne-1) @ (HPHTR_sqr_inv.T @ (factor @ HXp))))
     Xap=Xfp-pert
     
     return Xap+xa_m[:,None]

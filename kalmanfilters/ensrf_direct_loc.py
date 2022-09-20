@@ -8,7 +8,7 @@ def covariance_loc(model_data,proxy_lat,proxy_lon, cov_len):
     Function that returns the matrices needed for the Covariance Localization in the direct EnSRF solver by Hadamard (element-wise) product.
     These are the terms called W_loc and Y_loc here: https://www.nature.com/articles/s41586-020-2617-x#Sec7 (Data Assimilation section).
     The idea is to compute these matrices once in the beginning for all available proxy locations, and later in the DA loop one only selects
-    the relevant columns of W_loc / rows and columns of Y_loc for localized Kalman Filter Solver.
+    the relevant columns of W_loc / rows and columns of Y_loc for the localized simultaneous Kalman Filter Solver.
     
     Input:
        - model_data from which the grid point locations are extracted. Here I use the stack function, which I also use when constructing the

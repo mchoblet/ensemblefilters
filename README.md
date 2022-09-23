@@ -44,6 +44,7 @@ I usually work with climate fields as [xarrays](https://docs.xarray.dev/en/stabl
     * Square Root Formulation by Hunt
     * Adaptation by David Livings 
 * ESTKF: Error-subspace transform Kalman Filter 
+* Stochastic EnKF (the Burgers 1998 update), also with localization.
 
 
 ## Test Data

@@ -1,10 +1,12 @@
 # A collection of ensemble square root kalman filters implemented in Python
 
-This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1].The authors present a variety of data-assimilation methods using a unified mathematical notation. I really recommend reading the paper if you want to understand what it is all about.
+This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1].The authors present a variety of data-assimilation methods using a unified mathematical notation. It's really a pleasant to read paper that makes the math more understandable than the separate papers for different methods.
 
-For the implementation I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it due to errors, typos or lack of clarity. If you want to be 100% sure the functions are doing the right thing revise the math and the code by yourself. The jupyter notebook shows that the output (posterior mean + covariance) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
+I also added the possibility of localization, for that a function creating the distance decorrelation matrices is also included (cov_loc.py).
 
-I hope to have time to implement other methods mentioned in the paper one day, it's fun! Feel free to add your contributions if you like.
+For the implementation of the algorithms I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it (unfortunately there are some errors, but at least that makes you think about what one is actually implementing). The jupyter notebook shows that the output (posterior mean + covariance) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
+
+I hope to have time to implement other methods mentioned in the paper one da.
 
 ## Content of repository:
 * Folder kalmanfilters: Separate file for each Kalman Filter
@@ -31,15 +33,15 @@ The functions work on pure numpy arrays.
 *  Nx:  State Vector length
 *  Ny:  Number of measurements
 
-I usually work with climate fields as [xarrays](https://docs.xarray.dev/en/stable/), which you can easily bring into the right shape using methods like '.stack(z=('lat','lon')), 'swap_dims' for getting the dimensions in the right order, and '.values' to convert to numpy arrays.
+I usually work with climate fields as [xarrays](https://docs.xarray.dev/en/stable/), which you can easily bring into the right shape using methods like '.stack(z=('lat','lon')), 'swap_dims' for getting the dimensions in the right order, and '.values' to convert to numpy arrays. Although the algorithms here work on pure numpy arrays, using xarray for the pre- and postprocessing is really an asset.
 
-## Ensemble Kalman Filters implemented so far
+## Ensemble Kalman Filters implemented
 
 * EnSRF: Ensemble Square Root Filter
     * simultaneous solver
     * serialized solver
     * direct solving of square root filter
-    * direct solving with covariance localization (requires prior/measurement latitudes/longitudes)
+    * direct solving with covariance localization (requires prior/measurement with latitudes/longitudes, see cov_loc.py)
 * ETKF: Ensemble Transform Kalman Filter:
     * Square Root Formulation by Hunt
     * Adaptation by David Livings 

@@ -6,7 +6,7 @@ I also added the possibility of localization, for that a function creating the d
 
 For the implementation of the algorithms I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it (unfortunately there are some errors, but at least that makes you think about what one is actually implementing). The jupyter notebook shows that the output (posterior mean + covariance) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
 
-I hope to have time to implement other methods mentioned in the paper one da.
+I hope to have time to implement other methods mentioned in the paper one day.
 
 ## Content of repository:
 * Folder kalmanfilters: Separate file for each Kalman Filter

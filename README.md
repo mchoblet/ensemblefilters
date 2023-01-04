@@ -1,12 +1,12 @@
 # A collection of ensemble square root kalman filters implemented in Python
 
-This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the overview paper by Vetra-Carvalho et al. (2018) [1].The authors present a variety of data-assimilation methods using a unified mathematical notation. It's really a pleasant to read paper that makes the math more understandable than the separate papers for different methods.
+This repository offers Python code for a variety of Ensemble Kalman Filters as presented in the comprehensive paper by Vetra-Carvalho et al. (2018) [1]. The authors present a variety of data-assimilation methods using a unified mathematical notation. I consider it a pleasant to read paper that makes the math more understandable than the separate papers for different methods. You can find the derivation of the methods in my master thesis about Paleoclimate Data Assimilation: https://mchoblet.github.io/post/master/.
 
-I also added the possibility of localization, for that a function creating the distance decorrelation matrices is also included (cov_loc.py).
+I also added the possibility of localization with the function cov_loc.py which computes the the distance decorrelation matrices.
 
-For the implementation of the algorithms I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it (unfortunately there are some errors, but at least that makes you think about what one is actually implementing). The jupyter notebook shows that the output (posterior mean + covariance) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
+For the implementation of the algorithms I followed the Fortran-like pseudocode given by authors in the appendix and indicated in the comments where I deviated from it (unfortunately there are some errors in the pseudocode, but they helped me in understanding the algoirthms better). The jupyter notebook shows that the output (posterior mean + covariance) from all functions is equal for my test data, but of course strictly speaking this is not a proof.
 
-I hope to have time to implement other methods mentioned in the paper one day.
+I hope to have time to implement other methods mentioned in the Vetra-Carvalho paper one day.
 
 ## Content of repository:
 * Folder kalmanfilters: Separate file for each Kalman Filter
@@ -64,5 +64,5 @@ If you find errors, ways to optimize the code etc.  feel free to open an issue o
 
 # Literature
 [1] Sanita Vetra-Carvalho et al. State-of-the-art stochastic data assimilation methods for high-dimensional non-Gaussian problems. Tellus A: Dynamic Meteorology and Oceanography, 70(1):1445364, 2018. https://doi.org/10.1080/16000870.2018.1445364
-The authors have implemented most of the functions for the sangema project in Fortran and in julia language. I have not checked their code in detail: https://sourceforge.net/projects/sangoma/, https://github.com/Alexander-Barth/DataAssim.jlts
+The authors have implemented most of the functions for the sangema project in Fortran and in julia language. I have not checked their code in detail, you can find it here: https://sourceforge.net/projects/sangoma/, https://github.com/Alexander-Barth/DataAssim.jlts
 
